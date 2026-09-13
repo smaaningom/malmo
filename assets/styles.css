@@ -1,0 +1,284 @@
+/* Smaningom — plain styles. One page, one table, no flourishes. */
+
+:root {
+  --color-bg: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #555;
+  --color-border: #ddd;
+  --color-header-bg: #12163a;
+  --color-shortage: #1a7a3c;
+  --color-shortage-bg: #e6f4ea;
+  --color-surplus: #a33;
+  --color-surplus-bg: #f7e6e6;
+  --color-balance-bg: #eee;
+  --color-mixed: #a06a00;
+  --color-mixed-bg: #f7efdb;
+  --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.5;
+}
+
+.site-header {
+  background: var(--color-header-bg);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+}
+
+.brand {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.brand-o {
+  display: inline-block;
+  width: 0.72em;
+  height: 0.72em;
+  border-radius: 50%;
+  vertical-align: -0.05em;
+}
+
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0 0 1rem;
+}
+
+.intro {
+  margin: 0 0 0.4rem;
+  max-width: 65ch;
+}
+
+.source {
+  margin: 0 0 1.5rem;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+}
+
+.hint {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+.group-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.group-btn {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.group-btn.is-selected {
+  background: var(--color-header-bg);
+  border-color: var(--color-header-bg);
+  color: #fff;
+}
+
+.insights {
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  background: #f7f7f9;
+  border-radius: 8px;
+}
+
+.insights-summary {
+  margin: 0 0 1rem;
+}
+
+.insights h3 {
+  font-size: 0.9rem;
+  margin: 0 0 0.6rem;
+}
+
+.top-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.top-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.top-name {
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.top-name,
+a.col-name-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--color-ink-soft);
+}
+
+a.top-name:hover,
+a.col-name-link:hover {
+  border-bottom-style: solid;
+}
+
+.top-area {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+.advanced summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  margin: 0 0 1rem;
+  color: var(--color-ink-soft);
+}
+
+.status-row {
+  margin-bottom: 2rem;
+}
+
+.prototype-note {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  background: #f7f7f9;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+main section {
+  margin-bottom: 1.75rem;
+}
+
+main section h2 {
+  font-size: 1rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  font-weight: 600;
+  gap: 0.25rem;
+}
+
+.controls select,
+.controls input {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.search-label {
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-label input {
+  width: 100%;
+}
+
+.count {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+  margin: 1rem 0 0.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+th {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-ink-soft);
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+.col-area {
+  color: var(--color-ink-soft);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge-brist {
+  color: var(--color-shortage);
+  background: var(--color-shortage-bg);
+}
+
+.badge-överskott {
+  color: var(--color-surplus);
+  background: var(--color-surplus-bg);
+}
+
+.badge-balans {
+  color: var(--color-ink-soft);
+  background: var(--color-balance-bg);
+}
+
+.badge-paradox {
+  color: var(--color-mixed);
+  background: var(--color-mixed-bg);
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Software and systems developers — Småningom</title>
+  <meta name="description" content="What it actually takes to get a software developer job in Sweden: education, language reality, and other things worth knowing." />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="brand">Småning<img class="brand-o" src="../assets/favicon.svg" alt="o" />m</span>
+  </header>
+
+  <main class="wrap">
+    <p><a href="../index.html">← All occupations</a></p>
+
+    <p class="prototype-note">
+      This is a hand-written example for one occupation, not a systematic
+      dataset like the shortage/surplus numbers — see the note at the
+      bottom for why, and what it'd take to build this for all 205.
+    </p>
+
+    <h1>Mjukvaru- och systemutvecklare</h1>
+    <p class="subtitle">Software and systems developers</p>
+
+    <div class="status-row" id="status-row"></div>
+
+    <section>
+      <h2>Education</h2>
+      <p>
+        Most job ads ask for a university degree in computer science or
+        software engineering (3 years, "högskoleingenjör", or 5 years,
+        "civilingenjör"). In practice, plenty of working developers got
+        in a different way: a 1–2 year "YH" (yrkeshögskola) vocational IT
+        program, a foreign CS degree, a coding bootcamp, or a strong
+        portfolio/GitHub with no formal degree at all — especially for
+        junior and mid-level roles. Formal education matters more the more
+        senior or specialized the role (e.g. embedded systems, security).
+      </p>
+    </section>
+
+    <section>
+      <h2>Language</h2>
+      <p>
+        Not strictly required at a lot of companies. Many Swedish tech
+        workplaces — international companies, startups, most of Stockholm/
+        Gothenburg/Malmö's tech scene — run day-to-day work in English.
+        Job ads often list "svenska" as a plus or don't mention it at all;
+        some do genuinely require it (public sector, anything client-facing
+        in Swedish, smaller traditional companies). Read the actual ad, not
+        just the assumption that Swedish is mandatory — this is one of the
+        occupations where it usually isn't.
+      </p>
+    </section>
+
+    <section>
+      <h2>Other things worth knowing</h2>
+      <ul>
+        <li>No license or certification is required to work as a developer
+          (unlike e.g. electricians or nurses) — hiring is portfolio/
+          interview-based.</li>
+        <li>A personnummer (personal identity number) and BankID are
+          needed once you're employed (payroll, bank account, signing your
+          contract) — not before or during interviews.</li>
+        <li>A public GitHub, past projects, or a technical take-home test
+          typically matter more to hiring managers than the degree itself.</li>
+        <li>This is a national shortage occupation with rising 5-year
+          demand (see the status above) — one of the stronger bets on this
+          list right now.</li>
+      </ul>
+    </section>
+
+    <p class="prototype-note">
+      <strong>Why only one occupation:</strong> the shortage/surplus data
+      on the main page comes from Arbetsförmedlingen's Yrkesbarometer, a
+      clean published dataset. Education/language/requirement info like
+      this page isn't in that dataset — it doesn't exist as one systematic
+      source anywhere yet. Doing this properly for all 205 occupations
+      means either analyzing real job-ad text at scale (Arbetsförmedlingen's
+      JobSearch API has structured fields for this) or writing each one by
+      hand. Neither is done yet — this page is a mockup of the shape, not
+      a promise it's built.
+    </p>
+  </main>
+
+  <script src="../assets/jobs-data.js"></script>
+  <script>
+    const SITUATION_LABEL = { brist: "Shortage", balans: "Balanced", "överskott": "Surplus", paradox: "Mixed (regional)" };
+    const CHANCES_LABEL = { stora: "Many", medelstora: "Some", "små": "Few" };
+    const TREND_LABEL = { "öka": "Rising", "vara oförändrad": "Flat", minska: "Falling" };
+
+    const job = JOBS.find((j) => j.name === "Mjukvaru- och systemutvecklare");
+    if (job) {
+      const row = document.getElementById("status-row");
+      const badge = document.createElement("span");
+      badge.className = `badge badge-${job.situation}`;
+      badge.textContent = SITUATION_LABEL[job.situation];
+      row.appendChild(badge);
+      row.appendChild(document.createTextNode(
+        ` · ${CHANCES_LABEL[job.chances]} job openings · 5-year trend: ${TREND_LABEL[job.trend]}`
+      ));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Småningom — Swedish job market</title>
+  <meta name="description" content="Where Sweden actually has job shortages and surpluses, straight from Arbetsförmedlingen's own data." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="brand">Småning<img class="brand-o" src="assets/favicon.svg" alt="o" />m</span>
+  </header>
+
+  <main class="wrap">
+    <h1>Where Sweden actually needs workers</h1>
+    <p class="intro">
+      Twice a year, Arbetsförmedlingen (the Swedish public employment
+      service) rates every occupation's recruitment situation — shortage,
+      balance, or surplus — plus a 5-year demand forecast. This page is
+      that data, sorted so the biggest shortages come first. No spin,
+      nothing scraped or guessed.
+    </p>
+    <p class="source">Source: Arbetsförmedlingen, Yrkesbarometer, round 2026-1 (public domain).</p>
+
+    <h2>Which fields are you interested in?</h2>
+    <p class="hint">Pick one or more. Leave none picked to see everything.</p>
+    <div class="group-picker" id="group-picker"></div>
+
+    <section class="insights" id="insights">
+      <p class="insights-summary" id="insights-summary"></p>
+      <h3>Biggest shortages in your selection</h3>
+      <ol class="top-list" id="top-list"></ol>
+    </section>
+
+    <details class="advanced">
+      <summary>Full table (all occupations, more filters)</summary>
+
+      <div class="controls">
+        <label>
+          Area
+          <select id="filter-area"><option value="">All areas</option></select>
+        </label>
+        <label>
+          Situation
+          <select id="filter-situation">
+            <option value="">All</option>
+            <option value="brist">Shortage</option>
+            <option value="balans">Balanced</option>
+            <option value="överskott">Surplus</option>
+            <option value="paradox">Mixed (regional)</option>
+          </select>
+        </label>
+        <label class="search-label">
+          Search
+          <input id="search" type="search" placeholder="Occupation…" />
+        </label>
+      </div>
+
+      <p class="count" id="count"></p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Occupation</th>
+            <th>Area</th>
+            <th>Situation</th>
+            <th>Job openings</th>
+            <th>5-year trend</th>
+          </tr>
+        </thead>
+        <tbody id="jobs-body"></tbody>
+      </table>
+    </details>
+  </main>
+
+  <script src="assets/jobs-data.js"></script>
+  <script src="assets/jobs.js"></script>
+</body>
+</html>
