@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Who keeps Sweden running — Småningom</title>
+  <meta name="description" content="Real foreign-born employee share by occupation, next to whether Sweden currently has a shortage in that job — from SKR and Arbetsförmedlingen's own numbers." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="brand">Småning<img class="brand-o" src="assets/favicon.svg" alt="o" />m</span>
+  </header>
+
+  <main class="wrap">
+    <p><a href="index.html">← Where Sweden needs workers</a></p>
+
+    <h1>Who keeps Sweden running</h1>
+    <p class="intro">
+      In Swedish municipalities and regions, foreign-born staff went from
+      13% to 22% of employees between 2014 and 2024 (municipalities), and
+      14% to almost 20% (regions). Some occupations rely on foreign-born
+      workers far more than that average — here they are, next to whether
+      Sweden currently has a shortage in that job.
+    </p>
+    <p class="source">
+      Source: SKR (Sweden's municipal/regional employers' association),
+      "Personalen i välfärden 2024" — public sector only, not the whole
+      economy. Shortage status: Arbetsförmedlingen, Yrkesbarometer,
+      round 2026-1.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Occupation</th>
+          <th>Foreign-born share (2024)</th>
+          <th>Currently</th>
+        </tr>
+      </thead>
+      <tbody id="share-body"></tbody>
+    </table>
+
+    <p class="prototype-note">
+      This covers 15 occupations, hand-matched between two real datasets —
+      not all of them, and not a live feed. It's a proof of concept for
+      joining Arbetsförmedlingen's demand data with SKR's foreign-born
+      staffing data, not a finished picture of the whole economy.
+    </p>
+  </main>
+
+  <script src="assets/jobs-data.js"></script>
+  <script src="assets/immigrant-share-data.js"></script>
+  <script>
+    const SITUATION_LABEL = { brist: "Shortage", balans: "Balanced", "överskott": "Surplus", paradox: "Mixed (regional)" };
+    const SCOPE_LABEL = { municipalities: "municipalities", regions: "regions" };
+
+    function el(tag, props = {}, text) {
+      const node = document.createElement(tag);
+      Object.entries(props).forEach(([key, value]) => node.setAttribute(key, value));
+      if (text != null) node.textContent = text;
+      return node;
+    }
+
+    const byName = Object.fromEntries(JOBS.map((job) => [job.name, job]));
+    const rows = [...IMMIGRANT_SHARE].sort((a, b) => b.share - a.share);
+
+    const body = document.getElementById("share-body");
+    rows.forEach((row) => {
+      const job = byName[row.name];
+      const tr = el("tr");
+
+      tr.appendChild(el("td", { class: "col-name", title: (job && NAME_EN[job.name]) || "" }, row.name));
+      tr.appendChild(el("td", {}, `${row.share}% (${SCOPE_LABEL[row.scope]})`));
+
+      const statusTd = el("td");
+      if (job) {
+        statusTd.appendChild(el("span", { class: `badge badge-${job.situation}` }, SITUATION_LABEL[job.situation] || job.situation));
+      } else {
+        statusTd.appendChild(el("span", { class: "prototype-note" }, "no match"));
+      }
+      tr.appendChild(statusTd);
+
+      body.appendChild(tr);
+    });
+  </script>
+</body>
+</html>
